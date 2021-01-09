@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             foreach ($random_tags as $tag) {
                 DB::table('post_tags')->insert([
                     'post_id' => $post->id,
-                    'tag_id' => Tag::all()->random(1)[0]->id
+                    'tag_id' => $tag
                 ]);
             }
         }
