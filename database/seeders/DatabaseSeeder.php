@@ -23,8 +23,9 @@ class DatabaseSeeder extends Seeder
         Tag::factory(8)->create(); // Create 8 tags
 
         foreach(Post::all() as $post){ // loop through all posts 
-            for ($i=0; $i < rand(2,5); $i++) { // loop randmoly between 2 to 5 times
-                // Insert post tag
+            $random_tags = Tag::all()->random(rand(2, 5))->pluck('id')->toArray();
+            // Insert random post tag
+            foreach ($random_tags as $tag) {
                 DB::table('post_tags')->insert([
                     'post_id' => $post->id,
                     'tag_id' => Tag::all()->random(1)[0]->id
